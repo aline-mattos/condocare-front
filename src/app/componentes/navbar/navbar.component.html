@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand">
+  <a class="navbar-brand" routerLink="/home">
+    <img src="../../../assets/purple-logo.png" alt="Condo Care Logo">
+  </a>
+  <div class="buttons">
+    <ul class="navbar-nav">
+      <!-- Se autenticado e admin, exibe os links específicos -->
+      <ng-container *ngIf="isAuthenticated; else notAuthenticated">
+        <li class="nav-item">
+          <button type="button" (click)="logout()" class="btn btn-register">Sair</button>
+        </li>
+      </ng-container>
+
+      <!-- Se não autenticado, exibe a saudação e o botão de sair -->
+      <ng-template #notAuthenticated>
+        <li class="nav-item">
+          <a class="nav-link btn-submit" routerLink="/login">Entrar</a>
+        </li>
+        <li class="nav-item">
+          <button type="button" routerLink="/register" class="btn btn-register">Cadastre-se</button>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>

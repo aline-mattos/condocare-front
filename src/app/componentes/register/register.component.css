@@ -1,0 +1,127 @@
+.register-container {
+    display: flex;
+    height: 100vh;
+    background-color: #fff;
+}
+  
+.form-container {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #fff;
+}
+
+form{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  
+.logo-container {
+    margin: 32px;
+}
+
+i {
+    margin-right: 8px;
+}
+
+.input-icon {
+    display: flex;
+    font-size: 16px;
+    color: #8B63E7;
+}
+.form-control {
+    width: 65vh;
+    height: 55px;
+    border: green;
+    background-color: #D3C7EF;
+    border-radius: 8px;
+}
+  
+.form-control::placeholder {
+    color: #8B63E7;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+.background-container img {
+    width: 100vh;
+    height: 100vh;
+    object-fit: cover;
+}
+  
+.btn-register {
+    font-weight: bold;
+    background-color: #713793;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 16px 80px; 
+}
+  
+.btn-register:hover {
+    background-color: #8B63E7; 
+    color: #fff;
+}
+
+.btn-register:focus {
+    outline: none;
+    box-shadow: none;
+}
+  
+.redireciona-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    font-size: 18px;
+    color: #713793;
+}
+  
+.link-login {
+    margin-left: 8px;
+    text-decoration: underline;
+    color: #713793;
+}
+
+.campos-local-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.campo-ape,
+.campo-block {
+    width: 32vh;
+    height: 55px;
+    border: none;
+    background-color: #D3C7EF;
+    border-radius: 8px;
+    margin: 6px;
+    margin-bottom: 16px;
+}
+.ape, .block {
+    height: 100%;
+}
+.campo-ape,
+.campo-block:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Estilos para mensagens de erro */
+.error-message {
+    margin: 4px;
+    color: #FF5C5C;
+    font-size: 14px;
+}

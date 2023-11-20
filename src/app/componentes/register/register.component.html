@@ -1,0 +1,87 @@
+<div class="register-container">
+  <div class="background-container">
+    <img src="/assets/register-image.png" alt="Image de fundo">
+  </div>
+  <div class="form-container">
+    <div class="logo-container">
+      <img src="assets/purple-logo.png" alt="Logo Condo Care">
+    </div>
+    <p class="redireciona-register">Já tem uma conta? <a routerLink="/login" class="link-login"> Faça login</a></p>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group campo-form">
+        <label for="name" class="input-icon">
+          <i class="material-icons">person_outline</i>
+          <span>Nome</span>
+        </label>
+        <input type="text" class="form-control" id="name" name="name" formControlName="name" required
+          (input)="clearError('name')">
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error-message">Nome
+          não pode ficar em branco.</div>
+      </div>
+
+      <div class="campos-local-user">
+        <div class="ape">
+          <label for="apartment" class="input-icon">
+            <i class="material-icons">apartment</i>
+            <span>Apartamento</span>
+          </label>
+          <input type="text" class="campo-ape" id="apartment" name="apartment" formControlName="apartment"
+            required (input)="clearError('apartment')">
+          <div *ngIf="registerForm.get('apartment')?.invalid && registerForm.get('apartment')?.touched"
+            class="error-message">Preencha corretamente.</div>
+        </div>
+
+        <div class="block">
+          <label for="block" class="input-icon">
+            <i class="material-icons">pin</i>
+            <span>Bloco/Torre</span>
+          </label>
+          <input type="text" class="campo-block" id="block" name="block" formControlName="block" required
+            (input)="clearError('block')">
+          <div *ngIf="registerForm.get('block')?.invalid && registerForm.get('block')?.touched" class="error-message">
+            Preencha corretamente.</div>
+        </div>
+      </div>
+
+      <div class="form-group campo-form">
+        <label for="email" class="input-icon">
+          <i class="material-icons">mail_outline</i>
+          <span>Email</span>
+        </label>
+        <input type="email" class="form-control" id="email" name="email" formControlName="email" required
+          (input)="clearError('email')">
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
+          Email é obrigatório e deve ser um email válido.</div>
+      </div>
+
+      <div class="form-group campo-form">
+        <label for="password" class="input-icon">
+          <i class="material-icons">lock_outline</i>
+          <span>Senha</span>
+        </label>
+        <input type="password" class="form-control" id="password" name="password" formControlName="password" required
+          (input)="clearError('password')">
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
+          Digite uma senha válida.</div>
+      </div>
+
+      <div class="form-group campo-form">
+        <label for="confirmPassword" class="input-icon">
+          <i class="material-icons">lock</i>
+          <span>Confirmar Senha</span>
+        </label>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+          formControlName="confirmPassword" required (input)="clearError('confirmPassword')">
+        <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
+          class="error-message">Preencha a senha.</div>
+        <div *ngIf="confirmPasswordError" class="error-message">Senhas não coincidem.</div>
+
+      </div>
+
+      <div *ngIf="showErrorMessage" class="error-message">
+        Preencha todos os campos corretamente.
+      </div>
+      <button type="submit" class="btn btn-register" (click)="clearAllErrors()">Cadastrar</button>
+    </form>
+  </div> 
+</div>

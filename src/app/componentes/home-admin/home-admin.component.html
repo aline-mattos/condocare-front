@@ -1,0 +1,240 @@
+<div class="home-admin">
+    <app-navbar></app-navbar>
+    <div class="home-container">
+        <div class="content-container">
+            <div class="header">
+                Administrador
+            </div>
+            <div class="desc">
+                A união de funcionalidades que facilitam<br>
+                a rotina no condomínio para viver sem preocupações.
+            </div>
+            <div class="container-buttons">
+                <div *ngFor="let button of buttonsData" class="buttons-register" (click)="toggleForm(button)">
+                    <button type="button" class="btn btn-new-register">
+                        <img [src]="button.urlImage">
+                        {{ button.title}}
+                    </button>
+                </div>
+            </div>
+            <div class="register-service-form" *ngIf="showServiceForm">
+                <h4> CRIAR {{ registerSelectedTitle }}</h4>
+                <form #registerForm="ngForm">
+                    <div class="form-group">
+                        <label>Escolha o tipo de serviço:</label>
+                        <select class="form-control" id="type-service" name="type-service"
+                            [(ngModel)]="newServiceData.type" required>
+                            <option *ngFor="let register of registerData" [value]="register.name">{{
+                                register.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome do serviço:</label>
+                        <input type="text" class="form-control" id="name-service" name="name-service"
+                            [(ngModel)]="newServiceData.name" required>
+                    </div>
+                    <div class="buttons-toggle">
+                        <button type="button" class="btn btn-register" (click)="registerService()">Cadastrar</button>
+                        <button type="button" class="btn btn-cancel" (click)="cancel()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="register-delivery-form" *ngIf="showDeliveryForm">
+                <h4> CRIAR {{ registerSelectedTitle }}</h4>
+                <form #registerForm="ngForm">
+                    <div class="form-group">
+                        <label>Tipo de encomenda:</label>
+                        <select class="form-control" id="type-delivery" name="type-delivery"
+                            [(ngModel)]="newDeliveryData.type" required>
+                            <option *ngFor="let delivery of deliveryType" [value]="delivery.type ">{{
+                                delivery.type }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Apartamento:</label>
+                        <input type="text" class="form-control" id="apartment" name="apartment" [(ngModel)]="newDeliveryData.apartment" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bloco:</label>
+                        <input type="text" class="form-control" id="block" name="block" [(ngModel)]="newDeliveryData.block" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Data de Recebimento</label>
+                        <input type="date" class="form-control" id="date-received" name="date-received"
+                            [(ngModel)]="newDeliveryData.receivedDate" >
+                    </div>
+                    <div class="buttons-toggle">
+                        <button type="button" class="btn btn-register" (click)="registerDelivery()">Cadastrar</button>
+                        <button type="button" class="btn btn-cancel" (click)="cancel()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="tables">
+                <div class="table-services">
+                    <p>Serviços Cadastrados</p>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Tipo</th>
+                                    <th>Editar</th>
+                                    <th>Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let service of servicesData">
+                                    <td>{{ service.name }}</td>
+                                    <td>{{ service.type }}</td>
+                                    <td><i class="fa fa-pencil" (click)="openEditServiceForm(service)"></i></td>
+                                    <td><i class="fa fa-trash" (click)="excludeService(service.id)"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Formulário de edição servico -->
+            <div class="register-service-form" *ngIf="showEditServiceForm">
+                <h4>EDITAR SERVIÇO</h4>
+                <form #editServiceForm="ngForm">
+                    <div class="form-group">
+                        <label>Escolha o tipo de serviço:</label>
+                        <select class="form-control" id="type-service" name="type-service"
+                            [(ngModel)]="serviceToEdit.type" required>
+                            <!-- Opções de tipos de serviço -->
+                            <option *ngFor="let register of registerData" [value]="register.name"
+                                [selected]="register.name === serviceToEdit.name">{{ register.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome do serviço:</label>
+                        <input type="text" class="form-control" id="name-service" name="name-service"
+                            [(ngModel)]="serviceToEdit.name" required>
+                    </div>
+                    <div class="buttons-toggle">
+                        <button type="button" class="btn btn-register"
+                            (click)="updateService(serviceToEdit.id)">Atualizar</button>
+                        <button type="button" class="btn btn-cancel" (click)="cancelEdit()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+                <div class="table-deliveries">
+                    <p>Encomendas Cadastradas</p>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Apartamento</th>
+                                    <th>Bloco</th>
+                                    <th>Data de <br>Recebimento</th>
+                                    <th>Editar</th>
+                                    <th>Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let delivery of  deliveriesData">
+                                    <td>{{ delivery.type }}</td>
+                                    <td>{{ delivery.apartment }}</td>
+                                    <td>{{ delivery.block }}</td>
+                                    <td>{{ formatDate(delivery.receivedDate) }}</td>
+                                    <td><i class="fa fa-pencil" (click)="openEditDeliveryForm(delivery)"></i></td>
+                                    <td><i class="fa fa-trash" (click)="excludeDelivery(delivery.id)"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Formulário de edição delivery -->
+            <div class="register-delivery-form" *ngIf="showEditDeliveryForm">
+                <h4>EDITAR ENCOMENDA</h4>
+                <form #editDeliveryForm="ngForm">
+                    <div class="form-group">
+                        <label>Tipo de encomenda:</label>
+                        <select class="form-control" id="type-delivery" name="type-delivery"
+                            [(ngModel)]="deliveryToEdit.type" required>
+                            <option *ngFor="let delivery of deliveryType" [selected]="delivery.type === deliveryToEdit.type">{{
+                                delivery.type }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Apartamento:</label>
+                        <input type="text" class="form-control" id="apartment" name="apartment" [(ngModel)]="deliveryToEdit.apartment" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bloco:</label>
+                        <input type="text" class="form-control" id="block" name="block" [(ngModel)]="deliveryToEdit.block" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Data de Recebimento</label>
+                        <input type="date" class="form-control" id="date-received" name="date-received"
+                            [(ngModel)]="deliveryToEdit.receivedDate" >
+                    </div>
+                    <div class="buttons-toggle">
+                        <button type="button" class="btn btn-register" (click)="updateDelivery(deliveryToEdit.id)">Atualizar</button>
+                        <button type="button" class="btn btn-cancel" (click)="cancelEdit()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+                <div class="table-users">
+                    <p>Usuários Cadastrados</p>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Apartamento</th>
+                                    <th>Bloco</th>
+                                    <th>Editar</th>
+                                    <th>Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of usersData">
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.apartment }}</td>
+                                    <td>{{ user.block }}</td>
+                                    <td><i class="fa fa-pencil" (click)="openUserForm(user)"></i></td>
+                                    <td><i class="fa fa-trash" (click)="excludeUser(user.id)"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="register-user-form" *ngIf="showUserForm">
+                    <h4> EDITAR USUÁRIO {{ registerSelectedTitle }}</h4>
+                    <form #registerForm="ngForm">
+                        <div class="form-group">
+                            <label>Nome do usuário:</label>
+                            <input type="text" class="form-control" id="name-user" name="name-user" [(ngModel)]="userToEdit.name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <input type="text" class="form-control" id="email" name="email" [(ngModel)]="userToEdit.email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Apartamento</label>
+                            <input type="text" class="form-control" id="apartment" name="apartment" [(ngModel)]="userToEdit.apartment" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Bloco</label>
+                            <input type="text" class="form-control" id="block" name="block" [(ngModel)]="userToEdit.block" required>
+                        </div>
+                        <div class="buttons-toggle">
+                            <button type="button" class="btn btn-register" (click)="updateUser(userToEdit.id)">Atualizar</button>
+                            <button type="button" class="btn btn-cancel" (click)="cancelEdit()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

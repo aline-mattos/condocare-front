@@ -1,0 +1,178 @@
+.home-admin {
+    height: 100vh;
+    background-image: url('../../../assets/background-home-auth.png');
+    background-size: cover;
+    background-position: center;
+}
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 12px;
+}
+.header {
+    font-size: 64px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1;
+    color: #8B63E7;
+} 
+.desc {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #525252;
+}
+.container-buttons {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 16px;
+}
+.btn-new-register {
+    width: 250px;
+    height: 85px;
+    font-weight: 600;
+    background-color: #D3C7EF;
+    border: none;
+    border-radius: 12px;
+    color: #8B63E7;
+    display: block;
+    margin: 8px;
+    text-align: start;
+    padding: 12px;
+}
+.btn-new-register:hover {
+    background-color: #713793; 
+    color: #fff;
+}
+
+.btn-new-register:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+img {
+    margin-right: 8px;
+    width: 25%;
+}
+
+.tables{
+    display: flex;
+    width: 100%;
+    height: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+}
+.table-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    margin-bottom: 16px;
+}
+.table{
+    color: #525252;
+    width: 100%;
+}
+.tr{
+    color: #525252;
+}
+.table-deliveries{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 6px;
+}
+.table-services{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.table-users{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 6px;
+}
+p{
+    font-size: 20px;
+    font-weight: 600;
+    color: #525252;
+}
+
+.register-service-form, .register-delivery-form, .register-user-form  {
+    background-color: rgba(211, 199, 239, 0.6);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    padding: 32px;
+    width: 50%;
+}
+.linha{
+    display: flex;
+    justify-content: space-around;
+}
+
+form{
+    text-align: start;
+}
+input:focus{
+    outline: none;
+    box-shadow: none;
+}
+.form.control:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.form-group{
+    margin-top: 8px;
+}
+.buttons-toggle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-register {
+    font-weight: bold;
+    background-color: #713793;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 12px 40px; 
+}
+.btn-cancel {
+    font-weight: bold;
+    background-color: #D24646;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 12px 40px; 
+}

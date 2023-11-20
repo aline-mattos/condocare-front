@@ -1,0 +1,48 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    padding-left: 64px;
+    padding-right: 64px;
+}
+.navbar-brand img {
+    height: 64px; 
+}
+.buttons{
+    margin: 16px;
+}
+
+.btn-submit{
+    color: #fff;
+}
+
+.btn-register {
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 100;
+    background-color: #713793;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    padding: 9px 24px; 
+}
+  
+.btn-register:hover {
+    background-color: #8B63E7; 
+    color: #fff;
+}
+
+.btn-register:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.reservation{
+    color: #713793;
+    text-decoration: underline;
+}
+  

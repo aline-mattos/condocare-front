@@ -1,0 +1,113 @@
+<div class="home">
+    <app-navbar></app-navbar>
+    <div class="home-container">
+        <div class="content-container">
+            <div class="header">
+                Condomínio
+            </div>
+            <div class="desc">
+                A união de funcionalidades que facilitam<br>
+                a rotina no condomínio para viver sem preocupações.
+            </div>
+        </div>
+
+        <div class="reservation-container" [class.form-visible]="showForm">
+            <div class="tables">
+                <p>Reservas próximas:</p>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Reserva</th>
+                                <th>Data</th>
+                                <th>Editar</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let reservation of reservationsData">
+                                <td>{{ reservation.name }}</td>
+                                <td>{{ reservation.type }}</td>
+                                <td>{{ reservation.date | date: 'dd/MM/yyyy' }}</td>
+                                <td><i class="fa fa-pencil" (click)="openEditForm(reservation)"></i></td>
+                                <td><i class="fa fa-trash" (click)="exclude(reservation.id)"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Suas encomendas:</p>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Data de<br> Recebimento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let delivery of  deliveriesData">
+                                <td>{{ delivery.type }}</td>
+                                <td>{{ delivery.date }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="nova-reservation-container">
+                <p>CRIE UMA NOVA RESERVA:</p>
+                <div class="card-container">
+                    <div *ngFor="let card of cardsData" class="card" (click)="toggleForm(card)">
+                        <img [src]="card.urlImage" class="card-img-top" alt="{{ card.title }} Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ card.title }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="reservation-form" *ngIf="showForm">
+                    <h4>Criar uma nova reserva:</h4>
+                    <form #reservaForm="ngForm">
+                        <div class="form-group">
+                            <label for="service">Áreas Comuns disponíveis:</label>
+                            <select class="form-control" id="service" name="service" [(ngModel)]="selectedServiceId" required>
+                                <option *ngFor="let service as Service of servicesData" [value]="service.id">{{ service.name }}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Data:</label>
+                            <input type="date" class="form-control" id="date" name="date" [(ngModel)]="selectedDate"
+                                min="{{ currentDate }}">
+                        </div>
+                        <div class="buttons-toggle">
+                            <button type="button" class="btn btn-register" (click)="registerReservation()">Reservar</button>
+                            <button type="button" class="btn btn-cancel" (click)="cancel()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="reservation-form" *ngIf="showEditForm">
+                    <h4>EDITAR RESERVA</h4>
+                    <form #editReservationForm="ngForm">
+                        <div class="form-group">
+                            <label>Tipo de Reserva:</label>
+                            <select class="form-control" id="type-reservation" name="type-reservation" [(ngModel)]="selectedServiceId" required>
+                                <option *ngFor="let service of servicesData" [value]="service.id">{{ service.name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Data de Reserva</label>
+                            <input type="date" class="form-control" id="date-reservation" name="date-reservation"
+                                [(ngModel)]="reservationToEdit.date" >
+                        </div>
+                        <div class="buttons-toggle">
+                            <button type="button" class="btn btn-register" (click)="updateReservation(reservationToEdit.id)">Atualizar</button>
+                            <button type="button" class="btn btn-cancel" (click)="cancel()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
